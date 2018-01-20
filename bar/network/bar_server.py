@@ -78,7 +78,7 @@ class BARServerProtocol(NetstringReceiver):
         print "~~ LogIn Users : " , self.factory.numOfConnection
         try:
             print "Inform Bar-Coordinator that client with IP:port combination " + self.logout_info + "logged out"
-            bar0_conn("LogOut||||"+self.logout_info,urllib2.urlopen('http://ip.42.pl/raw').read(),443)
+            bar0_conn("LogOut||||"+self.logout_info,"195.251.225.87",443)
         except AttributeError:
             pass
         #self.sendString("LogOut||||"+self.logout_info)
@@ -89,8 +89,8 @@ class BARServerFactory(ServerFactory):
     numOfConnection = 0
 
 def bar_server(port,name):
-    BAR0_SERVER = urllib2.urlopen('http://ip.42.pl/raw').read()
-    BAR_SERVER = urllib2.urlopen('http://ip.42.pl/raw').read()
+    BAR0_SERVER = "195.251.225.87"
+    BAR_SERVER = "195.251.225.88"
     BAR0_SERVER_PORT = 443
 
     data = "BarServer||||This is a Bar server from a M.||||" + BAR_SERVER +":"+ str(port) +"||||"+name
