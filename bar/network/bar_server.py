@@ -59,15 +59,16 @@ class BARServerProtocol(NetstringReceiver):
         else:
             message = data[13:]
             print "STARTING BROADCASTING MESSAGES "
+            print clients
             for client in clients:
                 selfobject = str(self.transport.getPeer().host) +":"+ str(self.transport.getPeer().port)
                 clientobject = str(client.transport.getPeer().host) +":"+ str(client.transport.getPeer().port)
-                if selfobject != clientobject:
-                    print "--------------------------------------"
-                    print "To : " , client.transport.getPeer().host
-                    print "DATA : " , message
-                    print "--------------------------------------"
-                    client.sendString(message) #wirh client object sending the data to each client
+                #if selfobject != clientobject:
+                print "--------------------------------------"
+                print "To : " , client.transport.getPeer().host
+                #print "DATA : " , message
+                print "--------------------------------------"
+                client.sendString(message) #wirh client object sending the data to each client
 
     def connectionLost(self, reason):
         clients.remove(self)
