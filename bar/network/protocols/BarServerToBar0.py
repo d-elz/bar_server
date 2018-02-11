@@ -29,8 +29,10 @@ class BarServerToBar0Protocol(Protocol):
         elif data.split('||||')[0] == "LogOut":
             if data.split('||||')[1] != -1:
                 print "User successfully logged out"
+                self.connectionLost("User log out")
             elif data.split('||||')[1] == -1:
                 print "User not successfully logged out"
+                self.connectionLost("User logged out")
             else:
                 print "Something wrong with logged out!"
         else:
